@@ -1,0 +1,1 @@
+Questa cartella contiene tutti i file di tipo o. derivanti dalla compilazione dei file.h e .c.
