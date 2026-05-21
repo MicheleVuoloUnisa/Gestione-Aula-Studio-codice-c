@@ -26,8 +26,8 @@ int visualizzaStudentiInAttesa(queue q,int giorno,int mese,int anno, int inizioO
         return 0;
     }
     int cont=0;
-    queue temp=newQueue();
-    while(emptyQueue(q)==0){
+    queue temp=nuovaCoda();
+    while(codaVuota(q)==0){
         prenotazione tempItem=dequeue(q);
         //controllo se la prenotazione corrisponde alla data e alla fascia oraria
         //che l'utente ha selezionato
@@ -36,12 +36,12 @@ int visualizzaStudentiInAttesa(queue q,int giorno,int mese,int anno, int inizioO
         &&(getFineOra(tempItem)==fineOra)){
         cont++;
         }
-        enqueue(tempItem,temp);
+        inserisciInCoda(tempItem,temp);
     }
     //Ripristina l'ordine originale trasferendo di nuovo i dati nella coda di partenza
-    while(emptyQueue(temp)==0){
+    while(codaVuota(temp)==0){
         prenotazione tempItem=dequeue(temp);
-        enqueue(tempItem,q);
+        inserisciInCoda(tempItem,q);
     }
     //libero la memoria occupata per la lista temporanea
     free(temp);
