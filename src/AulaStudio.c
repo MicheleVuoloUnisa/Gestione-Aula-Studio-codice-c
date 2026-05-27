@@ -118,3 +118,36 @@ int gestioneIngressoSenzaPrenotazione(studente s, int inizioOra, int fineOra){
     }
     return 0; //l'aula studio per quella fascia oraria è piena
 }
+
+/*
+ * Funzione: gestioneCheckOutStudente
+ * Descrizione: Registra l'uscita (check-out) di uno studente dall'aula studio,
+ * liberando fisicamente il posto occupato nella matrice dell'aula.
+ *
+ * Input:
+ * - p: Puntatore all'ADT prenotazione associato allo studente che sta uscendo.
+ *
+ * Output:
+ * - Ritorna 0 se il check-out e la liberazione del posto avvengono con successo.
+ * - Ritorna -1 se il puntatore alla prenotazione è NULL (errore).
+ *
+ * Pre-condizioni:
+ * - La prenotazione 'p' deve esistere e lo studente dovrebbe risultare presente in aula.
+ *
+ * Post-condizioni:
+ * - Il posto nella matrice dell'aula torna disponibile per nuovi ingressi last-minute.
+ *
+ * Effetti Collaterali:
+ * - Modifica la matrice globale AulaStudio impostando a 0 la cella corrispondente 
+ * al posto e alla fascia oraria della prenotazione.
+ */
+int gestioneCheckOutStudente(prenotazione p){
+    if(p==NULL){
+        return -1;
+    }
+    int numPosto = getPostoAssegnato(p);
+    int inizioOra=getInizioOra(p);
+    AulaStudio[numPosto][mappaturaFasciaOraria(inizioOra)]=0;
+    return 0;
+    
+}
